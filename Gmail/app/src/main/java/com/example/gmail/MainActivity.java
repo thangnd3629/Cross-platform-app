@@ -29,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
     }
     public ArrayList<User> initData(){
         ArrayList<User> list = new ArrayList<User>();
-        list.add(new User("thang", "hello", "11:04 AM","09345","Vietnam",R.drawable.icon));
-        list.add(new User("thang", "hello", "11:04 AM","09345","Vietnam",R.drawable.icon));
-        list.add(new User("thang", "hello", "11:04 AM","09345","Vietnam",R.drawable.icon));
-        list.add(new User("thang", "hello", "11:04 AM","09345","Vietnam",R.drawable.icon));
-        list.add(new User("thang", "hello", "11:04 AM","09345","Vietnam",R.drawable.icon));
+        list.add(new User("thang", "hello", "11:04 AM","09345","Vietnam",R.drawable.navi));
+        list.add(new User("thang", "hello", "11:04 AM","09345","Vietnam",R.drawable.navi));
+        list.add(new User("thang", "hello", "11:04 AM","09345","Vietnam",R.drawable.navi));
+        list.add(new User("thang", "hello", "11:04 AM","09345","Vietnam",R.drawable.navi));
+        list.add(new User("thang", "hello", "11:04 AM","09345","Vietnam",R.drawable.navi));
         return  list;
     }
 }
