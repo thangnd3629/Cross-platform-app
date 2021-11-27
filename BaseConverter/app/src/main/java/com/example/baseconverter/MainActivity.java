@@ -1,6 +1,7 @@
 package com.example.baseconverter;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,8 +13,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-enum Base{
+enum Base {
     BINARY,
+    OCTA,
     HEXA,
     DECIMAL
 
@@ -22,9 +24,10 @@ enum Base{
 public class MainActivity extends AppCompatActivity {
 
     EditText input;
-    Spinner src , target;
+    Spinner src, target;
     Button convert_action;
     TextView result;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
         input = findViewById(R.id.input);
         result = findViewById(R.id.result);
         result.setText("");
-        src= findViewById(R.id.source_base);
+        src = findViewById(R.id.source_base);
 
-        target= findViewById(R.id.target_base);
+        target = findViewById(R.id.target_base);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_list_item_1, populateOptions()
@@ -46,22 +49,21 @@ public class MainActivity extends AppCompatActivity {
         target.setAdapter(adapter);
 
 
-
         convert_action = findViewById(R.id.convert_action);
         convert_action.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String source_base = (String) src.getSelectedItem();
                 String des_base = (String) target.getSelectedItem();
+                System.out.println("OKla");
 
                 try {
                     System.out.println(input.getText().toString());
-                    String convertedInput =  Integer.toString(
+                    String convertedInput = Integer.toString(
                             Integer.parseInt(input.getText().toString(), encodeBase(source_base)), encodeBase(des_base));
                     result.setText(convertedInput);
-                }
-                catch (NumberFormatException e)
-                {
+                } catch (NumberFormatException e) {
+                    System.out.println("in error handler");
                     result.setText("Wrong number format");
                 }
 
@@ -73,31 +75,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public List<String> populateOptions()
-    {
-        List<String > options = new ArrayList<>();
+    public List<String> populateOptions() {
+        List<String> options = new ArrayList<>();
         options.add(Base.BINARY.name());
         options.add(Base.DECIMAL.name());
         options.add(Base.HEXA.name());
-        return  options;
+        options.add(Base.OCTA.name());
+        return options;
     }
-    public int encodeBase(String base)
-    {
+
+    public int encodeBase(String base) {
         int encodedBase = 0;
 
-        if(base == Base.BINARY.name())
-        {
+        if (base == Base.BINARY.name()) {
             encodedBase = 2;
-        }
-        else if(base == Base.DECIMAL.name())
-        {
+        } else if (base == Base.DECIMAL.name()) {
             encodedBase = 10;
-        }
-        else if(base == Base.HEXA.name())
-        {
+        } else if (base == Base.HEXA.name()) {
             encodedBase = 16;
-        }
-        else {
+
+        } else if (base == Base.OCTA.name()) {
+            encodedBase = 8;
+        } else {
 
         }
 
@@ -105,8 +104,7 @@ public class MainActivity extends AppCompatActivity {
         return encodedBase;
     }
 
-    public void convert(String source, String target, String input)
-    {
+    public void convert(String source, String target, String input) {
 
     }
 }
